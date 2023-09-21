@@ -1,11 +1,13 @@
 
 # [random-scripts](https://github.com/amjadodeh/random-scripts)
 
-## One-step Automated Set Up
+some random scripts. 
 
-### openSUSE
+# One-step Automated Install(s)
 
-`bash <(curl -sL https://bit.ly/keyd-setup-opensuse)`
+## Custom keyd Setup
 
-WARNING: This may overwrite your current keyd config.
+### openSUSE Leap or Tumbleweed: `bash <(curl -sL https://bit.ly/keyd-setup-opensuse)`
+
+**WARNING: This may overwrite your current keyd config.**
 
