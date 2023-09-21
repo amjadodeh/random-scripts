@@ -6,9 +6,7 @@ systemctl enable --now keyd.service
 
 sudo mkdir -p /etc/keyd/
 
-if [[ $XDG_SESSION_TYPE == "wayland" ]]
-then
-
+if [[ $XDG_SESSION_TYPE == "wayland" ]]; then
 echo "[ids]
 
 *
@@ -44,9 +42,7 @@ z = macro(C-S-u 1e92 space)
 l = macro(C-S-u 02bf space)
 j = macro(C-S-u 02be space)
 " | sudo tee /etc/keyd/default.conf
-
 else
-
 echo "[ids]
 
 *
@@ -82,7 +78,6 @@ z = Ẓ
 l = ʿ
 j = ʾ
 " | sudo tee /etc/keyd/default.conf
-
 fi
 
 systemctl restart keyd.service
