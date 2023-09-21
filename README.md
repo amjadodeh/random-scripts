@@ -8,7 +8,7 @@ some random scripts.
 ### Distros:
 
 - openSUSE Leap and Tumbleweed: `bash <(curl -sL https://bit.ly/keyd-setup-opensuse)`
-- For everything else (nixpkgs): `bash <(curl -sL https://bit.ly/keyd-setup-nixpkgs)`
+- **NOT READY** | For everything else (nixpkgs): `bash <(curl -sL https://bit.ly/keyd-setup-nixpkgs)`
 
 **WARNING: This may overwrite your current keyd config.**
 
