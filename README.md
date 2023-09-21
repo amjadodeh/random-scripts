@@ -7,7 +7,7 @@ some random scripts.
 
 ### Distros:
 
-- openSUSE Tumbleweed: `bash <(curl -sL https://bit.ly/keyd-setup-opensuse)`
+- openSUSE Leap and Tumbleweed: `bash <(curl -sL https://bit.ly/keyd-setup-opensuse)`
 
 **WARNING: This may overwrite your current keyd config.**
 
