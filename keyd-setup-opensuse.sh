@@ -46,5 +46,5 @@ j = ʾ
 
 systemctl restart keyd.service
 
-echo "Done!"
+echo "Done! Please restart your applications for this to take effect."
 
