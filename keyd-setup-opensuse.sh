@@ -46,3 +46,5 @@ j = ʾ
 
 systemctl restart keyd.service
 
+echo "Done!"
+
