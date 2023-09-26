@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sh <(curl -L https://nixos.org/nix/install) --daemon
+sh <(curl -L https://nixos.org/nix/install) --daemon --yes
 
 nix-env -iA nixpkgs.keyd
 
