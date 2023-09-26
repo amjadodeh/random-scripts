@@ -4,6 +4,19 @@ sh <(curl -L https://nixos.org/nix/install) --daemon
 
 nix-env -iA nixpkgs.keyd
 
+echo "[Unit]
+Description=key remapping daemon
+Requires=local-fs.target
+After=local-fs.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/keyd
+
+[Install]
+WantedBy=sysinit.target
+" | sudo tee /usr/lib/systemd/system/keyd.service
+
 systemctl enable --now keyd.service
 
 sudo mkdir -p /etc/keyd/
