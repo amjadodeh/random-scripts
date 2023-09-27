@@ -2,9 +2,9 @@
 
 sh <(curl -L https://nixos.org/nix/install) --daemon --yes
 
-nix-env -iA nixpkgs.keyd
+. /etc/profile.d/nix.sh
 
-BIN_PATH="$(sudo find / -name 'keyd' | grep 'bin')"
+nix-env -iA nixpkgs.keyd
 
 echo "[Unit]
 Description=key remapping daemon
@@ -13,7 +13,7 @@ After=local-fs.target
 
 [Service]
 Type=simple
-ExecStart=${BIN_PATH}
+ExecStart=$HOME/.nix-profile/bin/keyd
 
 [Install]
 WantedBy=sysinit.target
