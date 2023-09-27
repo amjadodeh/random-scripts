@@ -14,7 +14,7 @@ some random scripts.
 
 ## Custom keyd Setup (Manual)
 
-On openSUSE:
+### On openSUSE:
 ```bash
 # Install keyd
 sudo zypper install keyd
@@ -68,7 +68,12 @@ systemctl enable --now keyd.service
 # Thats it! You may have to restart your applications for this to take effect.
 ```
 
-Using Nix Package Manager (on non-NixOS):
+### Using Nix Package Manager (on non-NixOS):
+
+**REQUIREMENTS:**
+- curl must be installed
+- systemd init system
+
 ```bash
 # Install Nix package manager using the recommended multi-user installation script (assuming its not already installed)
 sh <(curl -L https://nixos.org/nix/install) --daemon
