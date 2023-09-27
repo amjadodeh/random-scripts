@@ -11,7 +11,6 @@ some random scripts.
 - Any other Non-NixOS distributions (uses nixpkgs): `bash <(curl -sL https://bit.ly/keyd-setup-nixpkgs)`
 
 NOTE: This requires curl to run (obviously)
-
 **WARNING: This may overwrite your current keyd config.**
 
 ## Custom keyd Setup (Manual)
@@ -76,6 +75,7 @@ systemctl enable --now keyd.service
 **REQUIREMENTS:**
 - curl must be installed
 - systemd init system
+- SELinux must be disabled
 
 ```bash
 # Install Nix package manager using the recommended multi-user installation script (assuming its not already installed)
