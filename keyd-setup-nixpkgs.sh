@@ -23,7 +23,9 @@ systemctl enable --now keyd.service
 
 sudo mkdir -p /etc/keyd/
 
-ln -s /usr/share/keyd/keyd.compose ~/.XCompose
+KEYD_COMPOSE_PATH=$(sudo find / -name 'keyd.compose' | grep 'share/keyd/keyd.compose')
+
+ln -s $KEYD_COMPOSE_PATH ~/.XCompose
 
 echo "[ids]
 
