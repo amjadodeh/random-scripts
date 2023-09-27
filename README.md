@@ -14,7 +14,8 @@ some random scripts.
 
 ## Custom keyd Setup (Manual)
 
-### On openSUSE:
+### openSUSE:
+
 ```bash
 # Install keyd
 sudo zypper install keyd
