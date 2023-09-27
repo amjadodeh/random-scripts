@@ -64,8 +64,9 @@ j = ʾ
 
 # Enable and start keyd daemon
 systemctl enable --now keyd.service
+
+# Thats it! You may have to restart your applications for this to take effect.
 ```
-Thats it! You may have to restart your applications for this to take effect.
 
 Using Nix Package Manager (on non-NixOS):
 ```bash
@@ -140,6 +141,7 @@ j = ʾ
 
 # Enable and start keyd daemon
 systemctl enable --now keyd.service
+
+# Thats it! You may have to restart your applications for this to take effect.
 ```
-Thats it! You may have to restart your applications for this to take effect.
 
