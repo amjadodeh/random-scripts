@@ -10,6 +10,8 @@ some random scripts.
 - openSUSE Leap and Tumbleweed: `bash <(curl -sL https://bit.ly/keyd-setup-opensuse)`
 - Any other Non-NixOS distributions (uses nixpkgs): `bash <(curl -sL https://bit.ly/keyd-setup-nixpkgs)`
 
+NOTE: This requires curl to run (obviously)
+
 **WARNING: This may overwrite your current keyd config.**
 
 ## Custom keyd Setup (Manual)
