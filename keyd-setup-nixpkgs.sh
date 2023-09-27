@@ -23,7 +23,7 @@ systemctl enable --now keyd.service
 
 sudo mkdir -p /etc/keyd/
 
-KEYD_COMPOSE_PATH=$(sudo find / -name 'keyd.compose' | grep "/nix/store/.*$(keyd -v | grep -oP 'v\K[0-9.]+')/share/keyd/keyd.compose")
+KEYD_COMPOSE_PATH=$(sudo find / -name 'keyd.compose' | grep "/nix/store/.*$($HOME/.nix-profile/bin/keyd -v | grep -oP 'v\K[0-9.]+')/share/keyd/keyd.compose")
 
 ln -s $KEYD_COMPOSE_PATH ~/.XCompose
 
