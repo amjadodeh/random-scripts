@@ -4,6 +4,8 @@ sh <(curl -L https://nixos.org/nix/install) --daemon --yes
 
 nix-env -iA nixpkgs.keyd
 
+BIN_PATH="$(sudo find / -name 'keyd' | grep 'bin')"
+
 echo "[Unit]
 Description=key remapping daemon
 Requires=local-fs.target
@@ -11,7 +13,7 @@ After=local-fs.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/keyd
+ExecStart=${BIN_PATH}
 
 [Install]
 WantedBy=sysinit.target
