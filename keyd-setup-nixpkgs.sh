@@ -13,7 +13,7 @@ After=local-fs.target
 
 [Service]
 Type=simple
-ExecStart=$HOME/.nix-profile/bin/keyd
+ExecStart=/usr/bin/sudo $HOME/.nix-profile/bin/keyd
 
 [Install]
 WantedBy=sysinit.target
