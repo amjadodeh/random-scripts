@@ -6,6 +6,8 @@ sh <(curl -L https://nixos.org/nix/install) --no-daemon --yes
 
 nix-env -iA nixpkgs.keyd
 
+echo "$USER ALL=(ALL) NOPASSWD: $HOME/.nix-profile/bin/keyd" | sudo tee -a /etc/sudoers
+
 mkdir -p $HOME/.config/systemd/user/
 
 echo "[Unit]
