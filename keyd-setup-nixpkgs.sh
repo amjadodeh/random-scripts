@@ -65,5 +65,6 @@ j = ʾ
 
 systemctl --user enable --now keyd.service
 
-echo "Done! Please restart your applications for this to take effect."
+echo ""
+echo "Done! Please restart your system for changes to take effect."
 
