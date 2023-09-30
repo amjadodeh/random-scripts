@@ -12,8 +12,6 @@ mkdir -p $HOME/.config/systemd/user/
 
 echo "[Unit]
 Description=key remapping daemon
-Requires=local-fs.target
-After=local-fs.target
 
 [Service]
 Type=simple
@@ -67,7 +65,7 @@ l = ʿ
 j = ʾ
 " | sudo tee /etc/keyd/default.conf
 
-systemctl restart keyd.service
+systemctl --user restart keyd.service
 
 echo "Done! Please restart your applications for this to take effect."
 
