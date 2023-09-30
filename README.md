@@ -7,10 +7,13 @@ some random scripts.
 
 ### Distros:
 
+- Debian (via nixpkgs): `bash <(curl -sL https://bit.ly/keyd-setup-nixpkgs)`
+- Fedora (via nixpkgs): `bash <(curl -sL https://bit.ly/keyd-setup-nixpkgs)`
 - openSUSE Leap and Tumbleweed: `bash <(curl -sL https://bit.ly/keyd-setup-opensuse)`
 - Any other Non-NixOS distributions (uses nixpkgs): `bash <(curl -sL https://bit.ly/keyd-setup-nixpkgs)`
 
 NOTE: This requires curl to run (obviously)
+
 **WARNING: This may overwrite your current keyd config.**
 
 ## Custom keyd Setup (Manual)
@@ -75,37 +78,41 @@ systemctl enable --now keyd.service
 **REQUIREMENTS:**
 - curl must be installed
 - systemd init system
-- SELinux must be disabled
+- /etc/sudoers exists
 
 ```bash
-# Install Nix package manager using the recommended multi-user installation script (assuming its not already installed)
-sh <(curl -L https://nixos.org/nix/install) --daemon
+# Install Nix package manager using the single-user installation script (assuming its not already installed)
+sh <(curl -L https://nixos.org/nix/install) --no-daemon
 
 # Update environment to allow for Nix to work in active shell
-. /etc/profile.d/nix.sh
+. $HOME/.nix-profile/etc/profile.d/nix.sh
 
 # Install keyd via the Nix package manager
 nix-env -iA nixpkgs.keyd
 
-# Create systemd service file for keyd
+# Allow for current user to run keyd with sudo without password by appending a line to /etc/sudoers
+echo "$USER ALL=(ALL) NOPASSWD: $HOME/.nix-profile/bin/keyd" | sudo tee -a /etc/sudoers
+
+# Make directory in .config for systemd user services if it doesn't already exist
+mkdir -p $HOME/.config/systemd/user/
+
+# Create systemd user service file for keyd
 echo "[Unit]
 Description=key remapping daemon
-Requires=local-fs.target
-After=local-fs.target
 
 [Service]
 Type=simple
-ExecStart=$HOME/.nix-profile/bin/keyd
+ExecStart=/usr/bin/sudo $HOME/.nix-profile/bin/keyd
 
 [Install]
-WantedBy=sysinit.target
-" | sudo tee /usr/lib/systemd/system/keyd.service
+WantedBy=default.target
+" | sudo tee $HOME/.config/systemd/user/keyd.service
 
-# Make directory for config files if it doesn't already exist
+# Make directory for keyd config files if it doesn't already exist
 sudo mkdir -p /etc/keyd/
 
 # Find path for keyd.compose
-KEYD_COMPOSE_PATH=$(sudo find / -name 'keyd.compose' | grep 'share/keyd/keyd.compose')
+KEYD_COMPOSE_PATH=$(sudo find / -name 'keyd.compose' | grep "/nix/store/.*$($HOME/.nix-profile/bin/keyd -v | grep -oP 'v\K[0-9.]+')/share/keyd/keyd.compose")
 
 # Add unicode support for current user by symlinking path of keyd.compose to ~/.XCompose
 ln -s $KEYD_COMPOSE_PATH ~/.XCompose
@@ -148,8 +155,8 @@ j = ʾ
 " | sudo tee /etc/keyd/default.conf
 
 # Enable and start keyd daemon
-systemctl enable --now keyd.service
+systemctl --user enable --now keyd.service
 
-# Thats it! You may have to restart your applications for this to take effect.
+# Thats it! You should now restart your system for changes to take effect.
 ```
 

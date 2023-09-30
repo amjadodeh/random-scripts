@@ -2,8 +2,6 @@
 
 sudo zypper in -y keyd
 
-systemctl enable --now keyd.service
-
 sudo mkdir -p /etc/keyd/
 
 ln -s /usr/share/keyd/keyd.compose ~/.XCompose
@@ -44,7 +42,7 @@ l = ʿ
 j = ʾ
 " | sudo tee /etc/keyd/default.conf
 
-systemctl restart keyd.service
+systemctl enable --now keyd.service
 
 echo "Done! Please restart your applications for this to take effect."
 
