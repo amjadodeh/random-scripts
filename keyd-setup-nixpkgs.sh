@@ -6,6 +6,8 @@ sh <(curl -L https://nixos.org/nix/install) --no-daemon --yes
 
 nix-env -iA nixpkgs.keyd
 
+mkdir -p $HOME/.config/systemd/user/
+
 echo "[Unit]
 Description=key remapping daemon
 Requires=local-fs.target
@@ -16,10 +18,10 @@ Type=simple
 ExecStart=/usr/bin/sudo $HOME/.nix-profile/bin/keyd
 
 [Install]
-WantedBy=sysinit.target
-" | sudo tee /usr/lib/systemd/system/keyd.service
+WantedBy=default.target
+" | sudo tee $HOME/.config/systemd/user/keyd.service
 
-systemctl enable --now keyd.service
+systemctl --user enable --now keyd.service
 
 sudo mkdir -p /etc/keyd/
 
