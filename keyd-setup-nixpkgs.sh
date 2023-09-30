@@ -21,8 +21,6 @@ ExecStart=/usr/bin/sudo $HOME/.nix-profile/bin/keyd
 WantedBy=default.target
 " | sudo tee $HOME/.config/systemd/user/keyd.service
 
-systemctl --user enable --now keyd.service
-
 sudo mkdir -p /etc/keyd/
 
 KEYD_COMPOSE_PATH=$(sudo find / -name 'keyd.compose' | grep "/nix/store/.*$($HOME/.nix-profile/bin/keyd -v | grep -oP 'v\K[0-9.]+')/share/keyd/keyd.compose")
@@ -65,7 +63,7 @@ l = ʿ
 j = ʾ
 " | sudo tee /etc/keyd/default.conf
 
-systemctl --user restart keyd.service
+systemctl --user enable --now keyd.service
 
 echo "Done! Please restart your applications for this to take effect."
 
