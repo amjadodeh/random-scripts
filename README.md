@@ -19,6 +19,75 @@ NOTE: This requires curl to run (obviously)
 
 ## Custom keyd Setup (Manual)
 
+### Alpine Linux:
+
+```ash
+# Add required repositories (testing repo is optional)
+echo "
+https://dl-cdn.alpinelinux.org/alpine/v$(cut -d'.' -f1,2 /etc/alpine-release)/main/
+https://dl-cdn.alpinelinux.org/alpine/v$(cut -d'.' -f1,2 /etc/alpine-release)/community/
+https://dl-cdn.alpinelinux.org/alpine/edge/testing/
+" | doas tee /etc/apk/repositories
+
+# Update the index of available packages to account for new repos
+doas apk update
+
+# Install keyd
+doas apk add keyd
+
+# Make directory for config files if it doesn't already exist
+doas mkdir -p /etc/keyd/
+
+# Add unicode support for current user by symlinking /usr/share/keyd/keyd.compose to ~/.XCompose
+ln -s /usr/share/keyd/keyd.compose ~/.XCompose
+
+# Prune every line in .XCompose after line 10000 to prevent GTK4 compiled apps from crashing
+head -n 10000 ~/.XCompose > ~/.XCompose.temp && mv ~/.XCompose.temp ~/.XCompose
+
+# Create file 'default.conf' in keyd config directory if it doesn't already exist and write to that file
+echo "[ids]
+
+*
+
+[main]
+
+leftalt = layer(alt)
+
+[alt]
+
+a = ā
+d = ḍ
+h = ḥ
+i = ī
+s = ṣ
+t = ṭ
+u = ū
+z = ẓ
+l = ʿ
+j = ʾ
+esc = ~
+
+[alt+shift]
+
+a = Ā
+d = Ḍ
+h = Ḥ
+i = Ī
+s = Ṣ
+t = Ṭ
+u = Ū
+z = Ẓ
+l = ʿ
+j = ʾ
+" | doas tee /etc/keyd/default.conf
+
+# Enable and start keyd daemon
+doas rc-update add keyd default
+doas rc-service keyd start
+
+# Thats it! You should now restart your system for changes to take effect.
+```
+
 ### openSUSE:
 
 ```bash
