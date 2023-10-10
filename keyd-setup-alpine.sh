@@ -55,5 +55,6 @@ j = ʾ
 doas rc-update add keyd default
 doas rc-service keyd start
 
-echo "Done! Please restart your applications for this to take effect."
+echo ""
+echo "Done! Please restart your system for changes to take effect."
 
