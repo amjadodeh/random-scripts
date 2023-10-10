@@ -14,6 +14,8 @@ doas mkdir -p /etc/keyd/
 
 ln -s /usr/share/keyd/keyd.compose ~/.XCompose
 
+grep 'ā|ḍ|ḥ|ī|ṣ|ṭ|ū|ẓ|Ā|Ḍ|Ḥ|Ī|Ṣ|Ṭ|Ū|Ẓ|ʿ|ʾ|~' ~/.XCompose > ~/.XCompose.temp && mv ~/.XCompose.temp ~/.XCompose
+
 echo "[ids]
 
 *
