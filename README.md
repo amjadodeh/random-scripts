@@ -21,7 +21,7 @@ NOTE: This requires curl to run (obviously)
 
 ### Alpine Linux:
 
-```ash
+```bash
 # Add required repositories (testing repo is optional)
 echo "
 https://dl-cdn.alpinelinux.org/alpine/v$(cut -d'.' -f1,2 /etc/alpine-release)/main/
