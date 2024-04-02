@@ -6,7 +6,7 @@ sh <(curl -L https://nixos.org/nix/install) --no-daemon --yes
 
 nix-env -iA nixpkgs.keyd
 
-echo "$USER ALL=(ALL) NOPASSWD: $HOME/.nix-profile/bin/keyd" | sudo tee -a /etc/sudoers
+echo "$USER ALL=(ALL) NOPASSWD: $HOME/.nix-profile/bin/keyd" | sudo tee -a /etc/sudoers 1> /dev/null
 
 mkdir -p $HOME/.config/systemd/user/
 
@@ -19,7 +19,7 @@ ExecStart=/usr/bin/sudo $HOME/.nix-profile/bin/keyd
 
 [Install]
 WantedBy=default.target
-" | sudo tee $HOME/.config/systemd/user/keyd.service
+" | sudo tee $HOME/.config/systemd/user/keyd.service 1> /dev/null
 
 sudo mkdir -p /etc/keyd/
 
@@ -61,7 +61,7 @@ u = Ū
 z = Ẓ
 l = ʿ
 j = ʾ
-" | sudo tee /etc/keyd/default.conf
+" | sudo tee /etc/keyd/default.conf 1> /dev/null
 
 systemctl --user enable --now keyd.service
 

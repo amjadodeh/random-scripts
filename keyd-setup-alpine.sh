@@ -4,7 +4,7 @@ echo "
 https://dl-cdn.alpinelinux.org/alpine/v$(cut -d'.' -f1,2 /etc/alpine-release)/main/
 https://dl-cdn.alpinelinux.org/alpine/v$(cut -d'.' -f1,2 /etc/alpine-release)/community/
 https://dl-cdn.alpinelinux.org/alpine/edge/testing/
-" | doas tee /etc/apk/repositories
+" | doas tee /etc/apk/repositories 1> /dev/null
 
 doas apk update
 
@@ -50,7 +50,7 @@ u = Ū
 z = Ẓ
 l = ʿ
 j = ʾ
-" | doas tee /etc/keyd/default.conf
+" | doas tee /etc/keyd/default.conf 1> /dev/null
 
 doas rc-update add keyd default
 doas rc-service keyd start
