@@ -48,8 +48,6 @@ s = Ṣ
 t = Ṭ
 u = Ū
 z = Ẓ
-l = ʿ
-j = ʾ
 " | doas tee /etc/keyd/default.conf 1> /dev/null
 
 doas rc-update add keyd default

@@ -38,8 +38,6 @@ s = Ṣ
 t = Ṭ
 u = Ū
 z = Ẓ
-l = ʿ
-j = ʾ
 " | sudo tee /etc/keyd/default.conf 1> /dev/null
 
 systemctl enable --now keyd.service
