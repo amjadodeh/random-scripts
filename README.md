@@ -230,7 +230,9 @@ systemctl --user enable --now keyd.service
 # Thats it! You should now restart your system for changes to take effect.
 ```
 
-### Using Nix Package Manager (on non-NixOS):
+### Using NixOS:
+
+Put the following in your configuration.nix:
 
 ```nix
   # Enable keyd service and write configs
