@@ -77,8 +77,6 @@ s = Ṣ
 t = Ṭ
 u = Ū
 z = Ẓ
-l = ʿ
-j = ʾ
 " | doas tee /etc/keyd/default.conf 1> /dev/null
 
 # Enable and start keyd daemon
@@ -133,8 +131,6 @@ s = Ṣ
 t = Ṭ
 u = Ū
 z = Ẓ
-l = ʿ
-j = ʾ
 " | sudo tee /etc/keyd/default.conf 1> /dev/null
 
 # Enable and start keyd daemon
@@ -220,8 +216,6 @@ s = Ṣ
 t = Ṭ
 u = Ū
 z = Ẓ
-l = ʿ
-j = ʾ
 " | sudo tee /etc/keyd/default.conf 1> /dev/null
 
 # Enable and start keyd daemon
