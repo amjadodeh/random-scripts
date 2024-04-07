@@ -243,7 +243,6 @@ Put the following in your configuration.nix:
         ids = [ "*" ];
         settings = {
           main = {
-            #"ctrl+alt+t" = "command(terminator)";
             leftalt = "layer(alt)";
           };
 
