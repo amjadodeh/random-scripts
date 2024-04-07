@@ -27,7 +27,7 @@ echo "
 https://dl-cdn.alpinelinux.org/alpine/v$(cut -d'.' -f1,2 /etc/alpine-release)/main/
 https://dl-cdn.alpinelinux.org/alpine/v$(cut -d'.' -f1,2 /etc/alpine-release)/community/
 https://dl-cdn.alpinelinux.org/alpine/edge/testing/
-" | doas tee /etc/apk/repositories
+" | doas tee /etc/apk/repositories 1> /dev/null
 
 # Update the index of available packages to account for new repos
 doas apk update
@@ -79,7 +79,7 @@ u = Ū
 z = Ẓ
 l = ʿ
 j = ʾ
-" | doas tee /etc/keyd/default.conf
+" | doas tee /etc/keyd/default.conf 1> /dev/null
 
 # Enable and start keyd daemon
 doas rc-update add keyd default
@@ -135,7 +135,7 @@ u = Ū
 z = Ẓ
 l = ʿ
 j = ʾ
-" | sudo tee /etc/keyd/default.conf
+" | sudo tee /etc/keyd/default.conf 1> /dev/null
 
 # Enable and start keyd daemon
 systemctl enable --now keyd.service
@@ -161,7 +161,7 @@ sh <(curl -L https://nixos.org/nix/install) --no-daemon
 nix-env -iA nixpkgs.keyd
 
 # Allow for current user to run keyd with sudo without password by appending a line to /etc/sudoers
-echo "$USER ALL=(ALL) NOPASSWD: $HOME/.nix-profile/bin/keyd" | sudo tee -a /etc/sudoers
+echo "$USER ALL=(ALL) NOPASSWD: $HOME/.nix-profile/bin/keyd" | sudo tee -a /etc/sudoers 1> /dev/null
 
 # Make directory in .config for systemd user services if it doesn't already exist
 mkdir -p $HOME/.config/systemd/user/
@@ -176,7 +176,7 @@ ExecStart=/usr/bin/sudo $HOME/.nix-profile/bin/keyd
 
 [Install]
 WantedBy=default.target
-" | sudo tee $HOME/.config/systemd/user/keyd.service
+" | sudo tee $HOME/.config/systemd/user/keyd.service 1> /dev/null
 
 # Make directory for keyd config files if it doesn't already exist
 sudo mkdir -p /etc/keyd/
@@ -222,7 +222,7 @@ u = Ū
 z = Ẓ
 l = ʿ
 j = ʾ
-" | sudo tee /etc/keyd/default.conf
+" | sudo tee /etc/keyd/default.conf 1> /dev/null
 
 # Enable and start keyd daemon
 systemctl --user enable --now keyd.service
@@ -230,3 +230,48 @@ systemctl --user enable --now keyd.service
 # Thats it! You should now restart your system for changes to take effect.
 ```
 
+### Using Nix Package Manager (on non-NixOS):
+
+```nix
+  # Enable keyd service and write configs
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = [ "*" ];
+        settings = {
+          main = {
+            #"ctrl+alt+t" = "command(terminator)";
+            leftalt = "layer(alt)";
+          };
+
+          alt = {
+            a = "ā";
+            d = "ḍ";
+            h = "ḥ";
+            i = "ī";
+            s = "ṣ";
+            t = "ṭ";
+            u = "ū";
+            z = "ẓ";
+            l = "ʿ";
+            j = "ʾ";
+            esc = "~";
+          };
+
+          "alt+shift" = {
+            a = "Ā";
+            d = "Ḍ";
+            h = "Ḥ";
+            i = "Ī";
+            s = "Ṣ";
+            t = "Ṭ";
+            u = "Ū";
+            z = "Ẓ";
+          };
+        };
+      };
+    };
+  };
+
+```
