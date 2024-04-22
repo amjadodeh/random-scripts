@@ -3,7 +3,7 @@
 
 some random scripts. 
 
-## Weekly Assignment Scheduler
+## [Weekly Assignment Scheduler](https://github.com/amjadodeh/random-scripts/tree/master/weekly-assignment-scheduler)
 
 This Bash script randomly assigns places to people throughout the week, making it perfect for setting up unpredictable audits or inspections where randomization is crucial.
 
